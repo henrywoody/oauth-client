@@ -5,12 +5,14 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"regexp"
 )
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
+	http.HandleFunc("/request-tokens", handleRequestTokens)
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	http.HandleFunc("/", handleIndex)
+	http.HandleFunc("/", handleStaticHTML)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -20,8 +22,14 @@ func main() {
 	http.ListenAndServe(":"+port, nil)
 }
 
-func handleIndex(w http.ResponseWriter, r *http.Request) {
-	content, err := os.ReadFile(filepath.Join("static", "index.html"))
+var receiveCodePathRe = regexp.MustCompile(`.*receive-code(\.html)?$`)
+
+func handleStaticHTML(w http.ResponseWriter, r *http.Request) {
+	filePath := filepath.Join("static", "index.html")
+	if receiveCodePathRe.MatchString(r.URL.Path) {
+		filePath = filepath.Join("static", "receive-code.html")
+	}
+	content, err := os.ReadFile(filePath)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

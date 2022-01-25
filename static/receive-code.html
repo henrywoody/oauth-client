@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receive Code | OAuth Client</title>
+
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Receive Code</h1>
+
+    <p>
+        Code Received: <code id="code-display"></code>
+    </p>
+
+    <form id="request-details-form">
+        <div class="row" style="align-items: center;">
+            <label for="token-endpoint">Token Endpoint</label>
+            <input id="token-endpoint" name="tokenEndpoint" type="text">
+        </div>
+
+        <div class="row" style="align-items: center;">
+            <label for="client-id">Client ID</label>
+            <input id="client-id" name="clientID" type="text">
+        </div>
+
+        <div class="row" style="align-items: center;">
+            <label for="client-secret">Client Secret</label>
+            <input id="client-secret" name="clientSecret" type="text">
+        </div>
+
+
+        <div class="row" style="align-items: center;">
+            <input id="include-credentials-in-body" name="includeCredentialsInBody" type="checkbox">
+            <label for="include-credentials-in-body">Include Client Credentials in Body</label>
+        </div>
+    </form>
+
+    <div>
+        <button onclick="sendTokenRequest()">Request Tokens</button>
+    </div>
+
+    <div id="token-response-display"></div>
+</body>
+
+<script src="/static/receive-code.js"></script>
+</html>
