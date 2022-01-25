@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Client</title>
+
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>OAuth Client</h1>
+
+    <section>
+        <h2>Request Details</h2>
+
+        <form id="request-details-form">
+            <div class="row" style="align-items: center;">
+                <label for="authorization-endpoint">Authorization Endpoint</label>
+                <input id="authorization-endpoint" name="authorizationEndpoint" type="text">
+            </div>
+
+            <br>
+
+            <h3>Parameters</h3>
+
+            <div class="row" style="align-items: center;">
+                <label for="redirect-key-name">Redirect URI Key Name</label>
+                <input id="redirect-key-name" name="redirectKeyName" type="text" value="redirect_uri">
+            </div>
+
+            <aside style="font-size: 0.9rem;">
+                <p>
+                    The redirect URI will be added automatically under the key given above. Ensure that
+                    <code id="redirect-uri-display"></code> is registered as redirect URI for your application.
+                </p>
+            </aside>
+
+            <br>
+
+            <div id="request-parameters-table" class="table">
+                <div class="table-row">
+                    <div class="table-cell">
+                        <label>Key</label>
+                    </div>
+                    <div class="table-cell">
+                        <label>Value</label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" onclick="addRequestParam()">Add Parameter</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Request Authorization</h2>
+
+        <button onclick="generateLink()">Generate Link</button>
+
+        <div id="link-container"></div>
+    </section>
+</body>
+
+<script src="/static/request-form.js"></script>
+</html>

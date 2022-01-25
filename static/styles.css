@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.table {
+    display: table;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.table-cell {
+    display: table-cell;
+}
+
+body {
+    color: #eee;
+    background-color: #222;
+}
+
+a {
+    color: #fff;
+}
+
+input {
+    color: #eee;
+    background-color: #444;
+}
